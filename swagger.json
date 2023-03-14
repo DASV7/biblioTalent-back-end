@@ -1,0 +1,10 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "swagger api Talenta",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {},
+  "definitions": {}
+}
