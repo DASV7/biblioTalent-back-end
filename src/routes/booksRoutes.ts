@@ -1,5 +1,6 @@
 import express from 'express';
 import { Router } from 'express';
+import { createBook, getBooksByFilter } from "../lib/books/booksController"
 const route = Router();
 
 export default (app: Router) => {
@@ -19,7 +20,7 @@ export default (app: Router) => {
     *       200:
     *         description: list books
     */
-    route.get('/', (() => { }));
+    route.get('/', getBooksByFilter);
 
     /**
  * @swagger
@@ -47,7 +48,7 @@ export default (app: Router) => {
 *       200:
 *         description: book create correctly 
 */
-    route.psot('/', (() => { }));
+    route.post('/create', createBook);
 
     /**
 * @swagger

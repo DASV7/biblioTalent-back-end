@@ -31,8 +31,6 @@ app.use(config.api.prefix, routes());
 dbConnection()
 //server creation
 app.listen(port, (params) => {
-    console.log(params);
-
     console.log(`
     ####################################################
     Server listening on port: http://localhost:${port}
