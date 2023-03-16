@@ -1,6 +1,6 @@
 import express from 'express';
 import { Router } from 'express';
-import { editUserById, deleteEmployee, createNewUser } from '../lib/users/userController';
+import { editUserById, deleteUsers, createNewUser } from '../lib/users/userController';
 
 
 const route = Router();
@@ -8,7 +8,7 @@ const route = Router();
 export default (app: Router) => {
 
   //define Route users
-  app.use("/users", route) 
+  app.use("/users", route)
 
   /**
    * * @swagger
@@ -23,12 +23,12 @@ export default (app: Router) => {
    * 
    * Params: query options
   */
-  route.post('/', editUserById);  
+  route.post('/', editUserById);
 
   /**
    * * @swagger
    * /api/users:
-   *  post:
+   *  delete:
    *   description: This end-point delte user by id 
    *  responses:
    *  200:
@@ -38,11 +38,11 @@ export default (app: Router) => {
    * 
    * Params: query options with iduser
   */
-  route.delete('/', deleteEmployee);
+  route.delete('/', deleteUsers);
 
   /**
    * * @swagger
-   * /api/users:
+   * /api/users/create:
    *  post:
    *   description: this end-point Create a new employee
    *  responses:

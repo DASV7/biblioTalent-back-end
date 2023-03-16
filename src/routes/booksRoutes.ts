@@ -1,6 +1,6 @@
 import express from 'express';
 import { Router } from 'express';
-import { createBook, getBooksByFilter } from "../lib/books/booksController"
+import { createBook, editBoookById, getBooksByFilter, deleteBook, lendBook, lendBookUser } from "../lib/books/booksController"
 const route = Router();
 
 export default (app: Router) => {
@@ -9,23 +9,24 @@ export default (app: Router) => {
     app.use("/books", route)
 
     /**
-   * @swagger
-   * /api/books:
-   *   get:
-   *     summary: Get books information
-   *     description: this route get information of books
-   *     produces:
-   *       - application/json
-    *     responses:
-    *       200:
-    *         description: list books
-    */
+    * * @swagger
+    * /api/books:
+    *  get:
+    *   description: Get books information
+    *  responses:
+    *  200:
+    *  description: Success
+    * 500:
+    * description: Internal Server Error 
+    * 
+    * Params: query options
+   */
     route.get('/', getBooksByFilter);
 
     /**
  * @swagger
  * /api/books:
- *   delete:
+ *   post:
  *     summary: delete book by id 
  *     description: route for delete book by id 
  *     produces:
@@ -34,7 +35,7 @@ export default (app: Router) => {
   *       200:
   *         description: delete succesfully
   */
-    route.delete('/', (() => { }));
+    route.post('/delete', deleteBook);
 
     /**
 * @swagger
@@ -53,6 +54,33 @@ export default (app: Router) => {
     /**
 * @swagger
 * /api/books:
+*   post:
+*     summary: creation of book 
+*     description: route for create new books 
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: book create correctly 
+*/
+    route.post('/borrowed', lendBook);
+    /**
+* @swagger
+* /api/books:
+*   post:
+*     summary: api for borrow a book
+*     description: route for create borrow a book
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: book create correctly 
+*/
+    route.post('/borrowedbook', lendBookUser);
+
+    /**
+* @swagger
+* /api/books:
 *   patch:
 *     summary: update book 
 *     description: in this route you can update information of books 
@@ -62,7 +90,7 @@ export default (app: Router) => {
 *       200:
 *         description: book updated correctly
 */
-    route.patch('/', (() => { }));
+    route.patch('/', editBoookById);
 
 
 

@@ -11,7 +11,7 @@ export default (app: Router) => {
     /**
   * @swagger
   * /api/login:
-  *   get:
+  *   post:
   *     summary: api for Create new Users
   *     description: this route get information of users
   *     produces:
