@@ -8,7 +8,7 @@ const route = Router();
 export default (app: Router) => {
 
   //define Route users
-  app.use("/users", route) 
+  app.use("/users", route)
 
   /**
    * * @swagger
@@ -23,7 +23,7 @@ export default (app: Router) => {
    * 
    * Params: query options
   */
-  route.post('/', editUserById);  
+  route.post('/', editUserById);
 
   /**
    * * @swagger

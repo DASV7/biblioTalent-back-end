@@ -1,14 +1,19 @@
 import { users } from "../../models/users"
+import jsonWebToken from "../../services/otherServices/jsonWebToken";
 import { information } from "../../utils/queryOptions"
 
 
 export const createNewUser = async (req, res) => {
     try {
-        const existUser = await users.find({ email: req.body.email })
-        if (existUser && existUser.length) throw new Error("El Correo ya esta registrado")
+        const existUser = await users.findOne({ email: req.body.email })
+        req.body.employee = req.body.employee == 'on' ? true : false
+        if (existUser) throw new Error("El Correo ya esta registrado")
         const userss = new users({ ...req.body })
         const usersNew = await userss.save()
-        res.status(200).json({ information: usersNew, error: false });
+        const jwt = new jsonWebToken()
+        delete usersNew.password
+        const newTokenUser = await jwt.generateTokenSimpleSecret(usersNew, 60)
+        res.status(200).json({ jwt: newTokenUser, error: false });
     } catch (err) {
         console.log("Papá a Buscar el error", err.message)
         res.status(500).json({ message: err.message, error: true });
