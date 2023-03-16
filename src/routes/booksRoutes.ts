@@ -11,7 +11,7 @@ export default (app: Router) => {
     /**
     * * @swagger
     * /api/books:
-    *  post:
+    *  get:
     *   description: Get books information
     *  responses:
     *  200:
@@ -26,7 +26,7 @@ export default (app: Router) => {
     /**
  * @swagger
  * /api/books:
- *   delete:
+ *   post:
  *     summary: delete book by id 
  *     description: route for delete book by id 
  *     produces:
@@ -76,7 +76,7 @@ export default (app: Router) => {
 *       200:
 *         description: book create correctly 
 */
-    route.post('/borrowed', lendBookUser);
+    route.post('/borrowedbook', lendBookUser);
 
     /**
 * @swagger

@@ -7,7 +7,7 @@ const book = new mongoose.Schema({
     category: { type: String, required: true },
     urlImage: { type: String, required: true },
     status: { type: Boolean, required: false },
-    whoHave: { type: mongoose.Types.ObjectId, ref: "users" },
+    whoHave: { type: mongoose.Types.ObjectId, ref: "users", require: false },
     date_register: { type: Date, required: true, default: Date.now },
 });
 

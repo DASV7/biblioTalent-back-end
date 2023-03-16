@@ -23,40 +23,6 @@ export const createNewUser = async (req, res) => {
 
 
 
-export const userss = async (req, res) => {
-    try {
-        const { page, limit } = req.query
-        const userss = await users.find({})
-            .skip((page || 0) * (limit || 10))
-            .limit(10)
-
-        res.status(200).json({ information: userss, error: false });
-    } catch (err) {
-        console.log("Papá a Buscar el error", err.message)
-        res.status(500).json({ message: err.message, error: true });
-    }
-
-};
-
-export const userssByFilter = async (req, res) => {
-    try {
-        const { page, limit } = req.query
-        const filter = {}
-        Object.keys(req.body).forEach(key => {
-            if (req.body[key]) filter[key] = information[key](req.body[key])
-        })
-        const userss = await users.find(filter)
-            .skip((page || 0) * (limit || 10))
-            .limit(10)
-
-        res.status(200).json({ information: information, error: false });
-    } catch (err) {
-        console.log("Papá a Buscar el error", err.message)
-        res.status(500).json({ message: err.message, error: true });
-    }
-
-};
-
 
 export const editUserById = async (req, res) => {
     try {
@@ -77,7 +43,7 @@ export const editUserById = async (req, res) => {
 
 
 
-export const deleteEmployee = async (req, res) => {
+export const deleteUsers = async (req, res) => {
     try {
         const { _id } = req.body
         const deleteUser = await users.deleteOne({ _id })
